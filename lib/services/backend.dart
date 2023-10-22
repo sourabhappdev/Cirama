@@ -5,6 +5,7 @@ import 'package:cinemava/Models/Shows.dart';
 import 'package:http/http.dart' as http;
 import 'constants.dart';
 import 'package:cinemava/Models/Movie.dart';
+import 'package:cinemava/Models/genres.dart';
 
 class Api {
   Future<List<Moviemodel>> getTrendingmovies() async {
@@ -119,4 +120,34 @@ class Api {
       throw Exception("Something Went wrong");
     }
   }
+
+
+  Future<List<Castmodel>> getShowCast(int id) async {
+    final response = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/tv/$id?api_key=$Apikey&append_to_response=credits'));
+
+    if (response.statusCode == 200) {
+      final decodedData = jsonDecode(response.body)["credits"]['cast'] as List;
+
+      return decodedData.map((cast) => Castmodel.fromJson(cast)).toList();
+    } else {
+      throw Exception("Something Went wrong");
+    }
+  }
+
+
+  Future<List<Genresmodel>> getMovieGenres() async{
+    final response = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=$Apikey'));
+    if (response.statusCode == 200) {
+      final decodedData = jsonDecode(response.body)["genres"] as List;
+      return decodedData.map((cast) => Genresmodel.fromJson(cast)).toList();
+    } else {
+      throw Exception("Something Went wrong");
+    }
+
+  }
+
+
+
 }

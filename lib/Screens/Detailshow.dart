@@ -3,6 +3,8 @@ import 'package:cinemava/Models/Shows.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Components/casttiles.dart';
+import '../services/backend.dart';
 import '../services/constants.dart';
 
 class Detailshow extends StatefulWidget {
@@ -15,8 +17,6 @@ class Detailshow extends StatefulWidget {
 }
 
 class _DetailshowState extends State<Detailshow> {
-
-
   _DetailshowState({required this.data});
 
   Showmodel data;
@@ -56,7 +56,7 @@ class _DetailshowState extends State<Detailshow> {
                           height: 300,
                           child: Center(
                               child:
-                              CircularProgressIndicator())), // you can add pre loader iamge as well to show loading.
+                                  CircularProgressIndicator())), // you can add pre loader iamge as well to show loading.
                     ), //show progress  while loading image
                     errorWidget: (context, url, error) => Container(
                         width: MediaQuery.of(context).size.width,
@@ -93,7 +93,7 @@ class _DetailshowState extends State<Detailshow> {
                                 height: 300,
                                 child: Center(
                                     child:
-                                    CircularProgressIndicator())), // you can add pre loader iamge as well to show loading.
+                                        CircularProgressIndicator())), // you can add pre loader iamge as well to show loading.
                           ), //show progress  while loading image
                           errorWidget: (context, url, error) => Container(
                               width: MediaQuery.of(context).size.width,
@@ -112,14 +112,14 @@ class _DetailshowState extends State<Detailshow> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     data.name,
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.bebasNeue(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         textBaseline: TextBaseline.ideographic,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -128,14 +128,14 @@ class _DetailshowState extends State<Detailshow> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     textAlign: TextAlign.justify,
                     '⭐ ${data.vote_average}',
                     style: GoogleFonts.bebasNeue(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         textBaseline: TextBaseline.ideographic,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -144,14 +144,14 @@ class _DetailshowState extends State<Detailshow> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     textAlign: TextAlign.justify,
                     'First Air date  ${data.first_air_date}',
                     style: GoogleFonts.bebasNeue(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         textBaseline: TextBaseline.ideographic,
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,
@@ -160,14 +160,14 @@ class _DetailshowState extends State<Detailshow> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     textAlign: TextAlign.justify,
                     'Popularity  ${(data.popularity).toStringAsFixed(0)}',
                     style: GoogleFonts.bebasNeue(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         textBaseline: TextBaseline.ideographic,
                         color: Colors.amber,
                         fontWeight: FontWeight.bold,
@@ -176,17 +176,17 @@ class _DetailshowState extends State<Detailshow> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
                     'Overview :-',
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.bebasNeue(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         textBaseline: TextBaseline.ideographic,
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
@@ -201,7 +201,7 @@ class _DetailshowState extends State<Detailshow> {
                       data.overview,
                       textAlign: TextAlign.justify,
                       style: GoogleFonts.bebasNeue(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           textBaseline: TextBaseline.ideographic,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -209,6 +209,41 @@ class _DetailshowState extends State<Detailshow> {
                           fontSize: 16,
                         ),
                       ),
+                    ),
+                  ),
+                  Text(
+                    'CAST',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.bebasNeue(
+                      textStyle: const TextStyle(
+                        color: Colors.pinkAccent,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 2,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 250,
+                    child: FutureBuilder(
+                      future: Api().getShowCast(data.showid),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(snapshot.error.toString()),
+                          );
+                        } else if (snapshot.hasData) {
+                          return CastTiles(
+                            snapshot: snapshot,
+                          );
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      },
                     ),
                   ),
                 ],
@@ -220,4 +255,3 @@ class _DetailshowState extends State<Detailshow> {
     );
   }
 }
-

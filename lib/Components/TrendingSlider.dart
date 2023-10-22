@@ -47,11 +47,10 @@ class TrendingSlider extends StatelessWidget {
                   ),
                 ),
                 placeholder: (context, url) => Container(
+                  width: 200,
+                  height: 300,
                   alignment: Alignment.center,
-                  child: Container(
-                      width: 200,
-                      height: 300,
-                      child: Center(child: CircularProgressIndicator())), // you can add pre loader iamge as well to show loading.
+                  child: const Center(child: CircularProgressIndicator()), // you can add pre loader iamge as well to show loading.
                 ), //show progress  while loading image
                 errorWidget: (context, url, error) => Container(
                     width: 200,

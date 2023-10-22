@@ -1,5 +1,6 @@
 import 'package:cinemava/Screens/Concentric_scrren.dart';
 import 'package:cinemava/Screens/Controlpage.dart';
+import 'package:cinemava/Screens/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.dark().copyWith(
         useMaterial3: true
       ),
-      home: intro ? const Controlpage() :const ConcentricTransition(),
+      home: intro ?  Controlpage() : ConcentricTransition(),
 
     );
   }

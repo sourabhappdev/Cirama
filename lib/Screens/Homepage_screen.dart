@@ -34,7 +34,6 @@ class _HomepageState extends State<Homepage> {
     trendingMovies = Api().getTrendingmovies();
     topratedMovies = Api().getTopratedmovies();
     upcomingMovies = Api().getUpcomingmovies();
-
     trendingShows = Api().getTrendingshows();
     topratedShows = Api().getTopratedshows();
     airingTodayShows = Api().getAiringtodayshows();

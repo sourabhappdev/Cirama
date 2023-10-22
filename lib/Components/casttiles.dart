@@ -62,6 +62,7 @@ class CastTiles extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
+                
               ),
             ],
           );

@@ -49,6 +49,8 @@ class MovieTiles extends StatelessWidget {
                 ),
                 placeholder: (context, url) => Container(
                   alignment: Alignment.center,
+                  width: 200,
+                  height: 300,
                   child: CircularProgressIndicator(), // you can add pre loader iamge as well to show loading.
                 ), //show progress  while loading image
                 errorWidget: (context, url, error) => Container(
