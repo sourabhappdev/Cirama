@@ -148,6 +148,19 @@ class Api {
 
   }
 
+  Future<List<Moviemodel>> searchMovie(String str) async {
+    final response = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/search/movie?query=$str&api_key=$Apikey'));
+
+    if (response.statusCode == 200) {
+      final decodedData = jsonDecode(response.body)["results"] as List;
+      print(decodedData);
+      return decodedData.map((movie) => Moviemodel.fromJson(movie)).toList();
+    } else {
+      throw Exception("Something Went wrong");
+    }
+  }
+
 
 
 }

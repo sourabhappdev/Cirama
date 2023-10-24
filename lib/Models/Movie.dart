@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Moviemodel{
-  String title;
-  String overview;
-  String poster_path;
+  var title;
+  var overview;
+  var poster_path;
   var popularity;
-  String release_date;
+  var release_date;
   var vote_average;
   int movieid;
 

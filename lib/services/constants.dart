@@ -18,3 +18,4 @@ const NowPlayingMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_k
 const OnTheAirShowUrl = 'https://api.themoviedb.org/3/tv/on_the_air?api_key=$Apikey';
 
 const Imagepath = 'https://image.tmdb.org/t/p/w500';
+bool intro = false;

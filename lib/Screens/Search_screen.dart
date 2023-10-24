@@ -2,6 +2,7 @@ import 'package:cinemava/Models/genres.dart';
 import 'package:flutter/material.dart';
 import '../services/backend.dart';
 import 'package:cinemava/Screens/Genres_Movies.dart';
+import 'package:cinemava/Screens/Search_bar_screen.dart';
 
 class Searchscreen extends StatefulWidget {
   const Searchscreen({super.key});
@@ -66,26 +67,34 @@ class _SearchscreenState extends State<Searchscreen> {
           Container(
             child: Padding(
               padding: const EdgeInsets.only(top: 10.0, right: 10, left: 10),
-              child: TextField(
-                enabled: true,
-                decoration: InputDecoration(
-                  suffixIconColor: Colors.white,
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.search),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchBarScreen(),));
+                },
+                child: TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    suffixIconColor: Colors.white,
+                    suffixIcon: Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Colors.white,
+                        )),
+                    disabledBorder:  OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Colors.white,
+                        )),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Colors.white,
+                        )),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        width: 3,
-                        color: Colors.white,
-                      )),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        width: 3,
-                        color: Colors.white,
-                      )),
                 ),
               ),
             ),

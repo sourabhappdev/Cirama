@@ -1,11 +1,7 @@
-import 'package:cinemava/Screens/Concentric_scrren.dart';
-import 'package:cinemava/Screens/Controlpage.dart';
 import 'package:cinemava/Screens/spalsh_screen.dart';
+import 'package:cinemava/services/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
- bool intro = false;
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +15,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -31,18 +26,17 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        useMaterial3: true
+          useMaterial3: true
       ),
-      home: intro ?  Controlpage() : ConcentricTransition(),
+      home: Splash(),
 
     );
   }
-
   void getvalue() async{
 
     var prefs = await SharedPreferences.getInstance();
     var temp=prefs.getBool("intro")!;
     intro= temp!;
-    print(intro);
+    // print(intro);
   }
 }

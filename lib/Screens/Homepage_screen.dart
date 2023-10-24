@@ -18,14 +18,10 @@ class Homepage extends StatefulWidget {
 late Future<List<Moviemodel>> trendingMovies;
 late Future<List<Moviemodel>> topratedMovies;
 late Future<List<Moviemodel>> upcomingMovies;
-late Future<List<Moviemodel>> getgenre;
-
 late Future<List<Showmodel>> trendingShows;
 late Future<List<Showmodel>> topratedShows;
 late Future<List<Showmodel>> airingTodayShows;
 
-List<int> genresIdList = [18, 16, 878, 9648, 12, 27];
-// List<int> genresIdList = [18,16,878,9648,12,27];
 
 class _HomepageState extends State<Homepage> {
   @override
@@ -170,7 +166,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 18),
+              const Genrewidget(genreId: 18),
 
               const SizedBox(
                 height: 20,
@@ -188,7 +184,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 16),
+              const Genrewidget(genreId: 16),
 
               const SizedBox(
                 height: 20,
@@ -206,7 +202,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 878),
+              const Genrewidget(genreId: 878),
 
               const SizedBox(
                 height: 20,
@@ -224,7 +220,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 9648),
+              const Genrewidget(genreId: 9648),
 
               const SizedBox(
                 height: 20,
@@ -242,7 +238,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 12),
+              const Genrewidget(genreId: 12),
 
               const SizedBox(
                 height: 20,
@@ -260,7 +256,7 @@ class _HomepageState extends State<Homepage> {
                 height: 20,
               ),
 
-              Genrewidget(genreId: 27),
+              const Genrewidget(genreId: 27),
 
               const SizedBox(
                 height: 20,
